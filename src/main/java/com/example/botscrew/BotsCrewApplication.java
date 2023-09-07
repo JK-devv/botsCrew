@@ -33,13 +33,11 @@ public class BotsCrewApplication {
                     System.out.println(service.getStatistic(inputArray[1]));
                 } else if (input.startsWith(Constant.GLOBAL_SEARCH)) {
                     System.out.println(service.globalSearch(inputArray[inputArray.length - 1]));
-                } else {
-                    System.out.println(Constant.ANOTHER_QUESTION);
                 }
+
             } catch (RuntimeException exception) {
                 System.err.println(Constant.SOMETHING_WRONG + exception.getMessage());
-            }
-            finally {
+            } finally {
                 System.out.println(Constant.DO_YOU_HAVE_ANOTHER_QUESTION);
                 String response = scanner.nextLine().trim();
                 continueExecution = response.equalsIgnoreCase(Constant.YES);
