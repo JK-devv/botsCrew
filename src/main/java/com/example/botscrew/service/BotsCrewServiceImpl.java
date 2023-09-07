@@ -24,17 +24,18 @@ public class BotsCrewServiceImpl implements BotsCrewService {
 
     @Override
     public String getHeadOfDepartment(String departmentName) {
-        String headOdDepartment = departmentRepository.findByDepartmentName(departmentName)
+        String headOfDepartment = departmentRepository.findByDepartmentName(departmentName)
                 .map(Department::getHeadOfDepartment)
                 .orElseThrow(
                         () -> new BotsCrewException
                                 (String.format(Constant.CANNOT_FIND_HEAD_OF_DEPARTMENT,departmentName)));
-        return String.format(HEAD_OF_DEPARTMENT_IS, departmentName, headOdDepartment);
+        return String.format(HEAD_OF_DEPARTMENT_IS, departmentName, headOfDepartment);
     }
 
     @Override
     public String getStatistic(String departmentName) {
-        Map<String, Long> statistic = lectorRepository.findByDepartmentDepartmentName(departmentName)
+        Map<String, Long> statistic = lectorRepository
+                .findByDepartmentDepartmentName(departmentName)
                 .stream()
                 .collect(Collectors.groupingBy(Lector::getDegree, Collectors.counting()));
         if (statistic.isEmpty()) {
@@ -61,8 +62,10 @@ public class BotsCrewServiceImpl implements BotsCrewService {
                 .stream()
                 .mapToDouble(Lector::getSalary)
                 .average()
-                .orElseThrow(() -> new BotsCrewException(String.format(CANNOT_CALCULATE_SALARY, departmentName)));
-        return String.format(AVERAGE_SALARY, departmentName, averageSalary);
+                .orElseThrow(
+                        () -> new BotsCrewException(
+                                String.format(CANNOT_CALCULATE_SALARY, departmentName)));
+        return String.format(AVERAGE_SALARY, departmentName, Math.round(averageSalary * 100.0) / 100.0);
     }
 
     @Override
