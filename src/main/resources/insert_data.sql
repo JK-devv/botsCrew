@@ -1,24 +1,7 @@
--- create departments
-CREATE TABLE departments (
-                            id serial PRIMARY KEY,
-                            department_name VARCHAR(255),
-                            head_of_department VARCHAR(255),
-                            employee_count integer
-);
 -- insert into department
 INSERT INTO departments (department_name, head_of_department, employee_count)VALUES ('Finance', 'Ivan Valeryovich', 4);
 INSERT INTO departments (department_name, head_of_department, employee_count)VALUES ('Mathematical', 'Mary Olegovna', 3);
 INSERT INTO departments (department_name, head_of_department, employee_count)VALUES ('Humanitarian', 'Petrov Oleksandryv', 4);
-
--- create lectors
-CREATE TABLE lectors (
-                        id serial PRIMARY KEY,
-                        name VARCHAR(255),
-                        degree VARCHAR(255),
-                        salary double precision,
-                        department_id integer,
-                        FOREIGN KEY (department_id) REFERENCES departments (id)
-);
 
 -- insert into lectors
 INSERT INTO lectors (name, degree, salary, department_id) VALUES ('Khotybor Solomonovych', 'assistant', 1299.50, 1);

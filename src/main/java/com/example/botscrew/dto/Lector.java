@@ -8,11 +8,10 @@ import lombok.Data;
 @Table(name = "lectors")
 public class Lector {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @Enumerated(EnumType.STRING)
-    private Degree degree;
+    private String degree;
     private double salary;
     @OneToOne
     private Department department;

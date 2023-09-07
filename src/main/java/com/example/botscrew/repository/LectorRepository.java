@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface LectorRepository extends JpaRepository<Lector, Integer> {
-    List<Lector> findByDepartmentContains(String departmentName);
+    List<Lector> findByDepartmentDepartmentName(String departmentName);
+    List<Lector> findByNameContainingIgnoreCase(String name);
 }

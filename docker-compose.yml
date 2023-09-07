@@ -10,5 +10,6 @@ services:
       POSTGRES_USER: botsCrew
       POSTGRES_PASSWORD: botsCrew
       POSTGRES_DB: botsCrew_db
+      POSTGRES_INITDB_SCRIPT: /docker-entrypoint-initdb.d/create_tables.sql
     volumes:
-      - ./init_data.sql:/docker-entrypoint-initdb.d/init_data.sql
+    - ./src/main/resources:/docker-entrypoint-initdb.d
